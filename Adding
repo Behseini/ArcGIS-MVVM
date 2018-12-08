@@ -1,0 +1,37 @@
+1- Creat a layer collection like
+
+private LayerCollection layers;
+
+2- instantiate it in constructor
+
+public ViewModel() {
+         layers = new LayerCollection();
+    }
+    
+ 3- create a read only Property to pass to view like
+ 
+  public LayerCollection LayersColl {
+        get {
+            return layers;
+        }
+    }
+    
+4- Add each service to the Layer collection on Creating like
+
+private async void createService(){
+var serviceLayer = new ArcGISDynamicMapServiceLayer() {
+            ID = "mpklayer",
+            ServiceUri = localMapService.UrlMapService,
+        };
+
+        Layers.Add(serviceLayer);
+}
+
+
+view:
+<esriControls:Map Layers="{Binding Source={StaticResource VM}, Path=LayersColl}"/>
+    
+    
+ 
+ 
+ 
